@@ -1,5 +1,8 @@
+library(tidyverse)
 library(ggthemes)
-setwd('~/Documents/Data/mep/')
+
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+#setwd('~/Google Drive/analisis financieros/mep/')
 bonos_mep <- c("AL30", "AL30D", "GD30", "GD30D")
 
 
@@ -22,8 +25,8 @@ gd30d <- gd30d %>% select(fecha, cierre) %>% mutate(ticker = 'GD30D')
 retail <- left_join(al30, al30d, by = 'fecha') %>% select (-ticker.x,-ticker.y) %>% drop_na() %>% mutate( mep = cierre.x / cierre.y)
 idoneo <- left_join(gd30, gd30d, by = 'fecha') %>% select (-ticker.x,-ticker.y) %>% drop_na() %>% mutate( mep = cierre.x / cierre.y)
 
-write_csv(retail, 'ccl-AL30.csv')
-write_csv(idoneo, 'ccl-GD30.csv')
+write_csv(retail, 'mep-AL30.csv')
+write_csv(idoneo, 'mep-GD30.csv')
 
 grafretail <- retail %>% 
   group_by(fecha) %>%
