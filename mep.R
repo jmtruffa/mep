@@ -7,7 +7,7 @@ bonos_mep <- c("AL30", "AL30D", "GD30", "GD30D")
 
 
 for (i in seq_along(bonos_mep)){
-  download.file(paste('http://www.rava.com/empresas/precioshistoricos.php?e=',bonos_mep[i],'&csv=1', sep=''), paste(bonos_mep[i], '.csv', sep =''), mode = 'wb')
+  download.file(paste('http://www.rava.com/empresas/precioshistoricos.php?e=',bonos_mep[i],'&csv=1', sep=''), paste('~/Google Drive/analisis financieros/mep/', bonos_mep[i], '.csv', sep =''), mode = 'wb')
   }
 
 # pasar todo a map luego
@@ -25,8 +25,8 @@ gd30d <- gd30d %>% select(fecha, cierre) %>% mutate(ticker = 'GD30D')
 retail <- left_join(al30, al30d, by = 'fecha') %>% select (-ticker.x,-ticker.y) %>% drop_na() %>% mutate( mep = cierre.x / cierre.y)
 idoneo <- left_join(gd30, gd30d, by = 'fecha') %>% select (-ticker.x,-ticker.y) %>% drop_na() %>% mutate( mep = cierre.x / cierre.y)
 
-write_csv(retail, 'mep-AL30.csv')
-write_csv(idoneo, 'mep-GD30.csv')
+write_csv(retail, '~/Google Drive/analisis financieros/mep/mep-AL30.csv')
+write_csv(idoneo, '~/Google Drive/analisis financieros/mep/mep-GD30.csv')
 
 grafretail <- retail %>% 
   group_by(fecha) %>%
@@ -49,5 +49,5 @@ grafidoneo <- idoneo %>%
        y = "calculado con precios de Cierre", x = "")
 
 
-ggsave('MEPAL30.jpg', grafretail, units = "mm", width = 150, height = 75)
-ggsave('MEPGD30.jpg', grafidoneo, units = "mm", width = 150, height = 75)
+ggsave('~/Google Drive/analisis financieros/mep/MEPAL30.jpg', grafretail, units = "mm", width = 150, height = 75)
+ggsave('~/Google Drive/analisis financieros/mep/MEPGD30.jpg', grafidoneo, units = "mm", width = 150, height = 75)
