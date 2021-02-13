@@ -17,6 +17,8 @@ al30d <- read_csv('AL30D.csv')
 gd30 <- read_csv('GD30.csv')
 gd30d <- read_csv('GD30D.csv')
 
+
+
 al30 <- al30 %>% select(fecha, cierre) %>% mutate(ticker = 'AL30')
 al30d <- al30d %>% select(fecha, cierre) %>% mutate(ticker = 'AL30D')
 gd30 <- gd30 %>% select(fecha, cierre) %>% mutate(ticker = 'GD30')
