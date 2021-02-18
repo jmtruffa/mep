@@ -1,8 +1,8 @@
 library(tidyverse)
 library(ggthemes)
 
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-#setwd('~/Google Drive/analisis financieros/mep/')
+#setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+setwd('~/Google Drive/analisis financieros/mep/')
 bonos_mep <- c("AL30", "AL30D", "GD30", "GD30D")
 
 
